@@ -55,4 +55,5 @@ def run_game():
         gf.update_screen(objs)
 
 
-run_game()
+if __name__ == "__main__":
+    run_game()
