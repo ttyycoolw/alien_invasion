@@ -6,8 +6,6 @@
 # @FileName: alien_invasion.py
 
 
-import sys
-
 import pygame
 from pygame.sprite import Group
 
@@ -16,6 +14,7 @@ from game_stats import GameStats
 from scoreboard import Scoreboard
 from button import Button
 from ship import Ship
+from objects import Objects
 import game_functions as gf
 
 
@@ -38,18 +37,20 @@ def run_game():
     bullets = Group()
     aliens = Group()
 
+    # 创建实例的整合
+    objs = Objects(ai_settings, screen, stats, sb, play_button, ship, aliens, bullets)
+
     # 创建外星人群
-    gf.create_fleet(ai_settings, screen, ship, aliens)
+    gf.create_fleet(objs)
 
     # 开始游戏的主循环
     while True:
-        gf.check_events(ai_settings, screen, stats, sb, play_button, ship, aliens, bullets)
+        gf.check_events(objs)
 
         if stats.game_active:
-            # print('active', stats.ships_left)
             ship.update()
-            gf.update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets)
-            gf.update_aliens(ai_settings, stats, sb, screen, ship, aliens, bullets)
+            gf.update_bullets(objs)
+            gf.update_aliens(objs)
 
         gf.update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button)
 
