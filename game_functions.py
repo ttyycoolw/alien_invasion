@@ -147,16 +147,16 @@ def fire_bullet(objs):
         objs.bullets.add(new_bullet)
 
 
-def get_number_aliens_x(ai_settings, alien_width):
+def get_number_aliens_x(objs, alien_width):
     """计算每行可容纳多少个外星人"""
-    available_space_x = ai_settings.screen_width - 2 * alien_width
+    available_space_x = objs.ai_settings.screen_width - 2 * alien_width
     number_aliens_x = int(available_space_x / (2 * alien_width))
     return number_aliens_x
 
 
-def get_number_rows(ai_settings, ship_height, alien_height):
+def get_number_rows(objs, ship_height, alien_height):
     """计算屏幕可容纳多少行外星人"""
-    available_space_y = (ai_settings.screen_height - 3 * alien_height - ship_height)
+    available_space_y = (objs.ai_settings.screen_height - 3 * alien_height - ship_height)
     number_rows = int(available_space_y / (2 * alien_height))
     return number_rows
 
@@ -176,8 +176,8 @@ def create_fleet(objs):
     """创建外星人群"""
     # 创建一个外星人，并计算一行可容纳多少个外星人
     alien = Alien(objs.ai_settings, objs.screen)
-    number_aliens_x = get_number_aliens_x(objs.ai_settings, alien.rect.width)
-    number_rows = get_number_rows(objs.ai_settings, objs.ship.rect.height, alien.rect.height)
+    number_aliens_x = get_number_aliens_x(objs, alien.rect.width)
+    number_rows = get_number_rows(objs, objs.ship.rect.height, alien.rect.height)
 
     # 创建第一行外星人
     for row_number in range(number_rows):
