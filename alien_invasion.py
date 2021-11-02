@@ -52,7 +52,7 @@ def run_game():
             gf.update_bullets(objs)
             gf.update_aliens(objs)
 
-        gf.update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button)
+        gf.update_screen(objs)
 
 
 run_game()
