@@ -27,7 +27,7 @@ class GameInstances:
         # 创建游戏屏幕
         self.screen = pygame.display.set_mode((self.ai_settings.screen_width, self.ai_settings.screen_height))
         # 创建Play按钮
-        self.play_button = Button(self.ai_settings, self.screen, "Play")
+        self.play_button = Button(self.screen, "Play")
         # 创建一个用于存储游戏统计信息的实例，并创建记分牌
         self.stats = GameStats(self.ai_settings)
         self.sb = Scoreboard(self.ai_settings, self.screen, self.stats)
