@@ -20,19 +20,12 @@ def run_game():
     # 初始化游戏实例
     objs = GameInstances()
 
-    # 创建外星人群
-    gf.create_fleet(objs)
-
     # 开始游戏的主循环
     while True:
+        # 检测操作
         gf.check_events(objs)
-
-        if objs.stats.game_active:
-            objs.ship.update()
-            gf.update_bullets(objs)
-            gf.update_aliens(objs)
-
-        gf.update_screen(objs)
+        # 更新实例，并刷新屏幕
+        objs.update()
 
 
 if __name__ == "__main__":

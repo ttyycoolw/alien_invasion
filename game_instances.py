@@ -21,6 +21,7 @@ class GameInstances:
     """整合管理游戏中的实例"""
 
     def __init__(self):
+        """初始化游戏实例"""
         # 导入游戏设置
         self.ai_settings = Settings()
         # 创建游戏屏幕
@@ -34,3 +35,14 @@ class GameInstances:
         self.ship = Ship(self.ai_settings, self.screen)
         self.aliens = Group()
         self.bullets = Group()
+
+        # 创建外星人群
+        gf.create_fleet(self)
+
+    def update(self):
+        """更新实例，并刷新屏幕"""
+        if self.stats.game_active:
+            self.ship.update()
+            gf.update_bullets(self)
+            gf.update_aliens(self)
+        gf.update_screen(self)
